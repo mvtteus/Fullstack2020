@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom'
 const Header = (props) => {
   return (
       <div>
-          <p>
+          <h1>
             {props.course}  
-          </p>
+          </h1>
       </div>
   )
 }
@@ -19,12 +19,12 @@ const Part = ({nimi, tehtavia}) => {
       </div>
   )
 } 
-const Content = ({s1, m1, s2, m2, s3, m3}) => {
+const Content = ({osa1, osa2, osa3}) => {
   return (
     <div>
-      <Part nimi = {s1} tehtavia = {m1}/>
-      <Part nimi = {s2} tehtavia = {m2}/>
-      <Part nimi = {s3} tehtavia = {m3}/>
+      <Part nimi = {osa1.name} tehtavia = {osa1.exercises}/>
+      <Part nimi = {osa2.name} tehtavia = {osa2.exercises}/>
+      <Part nimi = {osa3.name} tehtavia = {osa3.exercises}/>
     </div>
   )
 } 
@@ -39,18 +39,24 @@ const Total = (props) => {
 }
 const App = () => {
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
 
   return (
     <div>
       <Header course={course} />
-      <Content s1 = {part1} m1 = {exercises1} s2 = {part2} m2 = {exercises2} s3 = {part3} m3 = {exercises3} />
-      <Total exercises = {[exercises2, exercises1, exercises3]}/>
+      <Content osa1 = {part1} osa2 = {part2} osa3 = {part3} />
+      <Total exercises = {[part1.exercises, part2.exercises, part3.exercises]}/>
     </div>
   )
 }
