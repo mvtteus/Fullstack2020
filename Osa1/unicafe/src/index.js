@@ -11,6 +11,21 @@ const Header = (props) => {
     )
   }
 
+const Button = ({onClick, text}) => {
+    return (
+        <button onClick = {onClick}> {text} </button>
+    )
+}
+
+const StatisticLine = ({text, value, extra}) => {
+    return (
+        <p>
+            {text} {value} {extra}
+        </p>
+
+    )
+}
+
 const Statistics = (props) => {
     if (props.good+props.neutral+props.bad === 0) {
         return (
@@ -21,13 +36,11 @@ const Statistics = (props) => {
     }
     return (
         <div>
-            <p>
-                Good {props.good}
-                Neutral {props.neutral}
-                Bad {props.bad}
-                Average {(props.bad*-1+props.good*1+props.neutral*0)/(props.bad+props.neutral+props.good)}
-                Positive {props.good/(props.bad+props.neutral+props.good)*100} %
-            </p>
+            <StatisticLine text = "good" value = {props.good}/>
+            <StatisticLine text = "neutral" value = {props.neutral}/>
+            <StatisticLine text = "bad" value = {props.bad}/>
+            <StatisticLine text = "average" value = {props.good*1+props.bad*-1/(props.good+props.neutral+props.bad)}/>
+            <StatisticLine text = "positive" value = {props.good/(props.good+props.neutral+props.bad)*100} extra = "%" /> 
         </div>
     )
 }
@@ -41,17 +54,12 @@ const App = () => {
     return (
         <div>
             <Header name={header} />
-        <button onClick={() => setGood(good + 1)}>
-            good
-        </button>
-        <button onClick={() => setNeutral(neutral + 1)}>
-            neutral
-        </button>
-        <button onClick={() => setBad(bad + 1)}>
-            bad
-        </button>
+        <Button onClick = {() => setGood(good + 1)} text = 'good'/>
+        <Button onClick = {() => setNeutral(neutral + 1)} text = 'neutral'/>
+        <Button onClick = {() => setBad(bad + 1)} text = 'bad' />
         <Header name = {header2} />
-        <Statistics good = {good} neutral = {neutral} bad = {bad}/>
+        <Statistics good = {good} neutral = {neutral} bad = {bad} />
+        
         </div>
         )
 }
