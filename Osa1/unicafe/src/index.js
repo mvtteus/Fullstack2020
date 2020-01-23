@@ -10,6 +10,27 @@ const Header = (props) => {
         </div>
     )
   }
+
+const Statistics = (props) => {
+    if (props.good+props.neutral+props.bad === 0) {
+        return (
+            <div>
+                No feedback given
+            </div>
+        )
+    }
+    return (
+        <div>
+            <p>
+                Good {props.good}
+                Neutral {props.neutral}
+                Bad {props.bad}
+                Average {(props.bad*-1+props.good*1+props.neutral*0)/(props.bad+props.neutral+props.good)}
+                Positive {props.good/(props.bad+props.neutral+props.good)*100} %
+            </p>
+        </div>
+    )
+}
 const App = () => {
     const [good, setGood] = useState(0)
     const [neutral, setNeutral] = useState(0)
@@ -30,11 +51,7 @@ const App = () => {
             bad
         </button>
         <Header name = {header2} />
-        <p> Good {good} </p>
-        <p> Neutral {neutral} </p>
-        <p> Bad {bad} </p>
-        <p> Average {(bad*-1+good*1+neutral*0)/(bad+neutral+good)} </p>
-        <p> Positive {good/(bad+neutral+good)*100} % </p>
+        <Statistics good = {good} neutral = {neutral} bad = {bad}/>
         </div>
         )
 }
