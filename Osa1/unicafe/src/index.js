@@ -53,13 +53,25 @@ const App = () => {
 
     return (
         <div>
-            <Header name={header} />
-        <Button onClick = {() => setGood(good + 1)} text = 'good'/>
-        <Button onClick = {() => setNeutral(neutral + 1)} text = 'neutral'/>
-        <Button onClick = {() => setBad(bad + 1)} text = 'bad' />
-        <Header name = {header2} />
-        <Statistics good = {good} neutral = {neutral} bad = {bad} />
-        
+        <table cellSpacing = "0" cellPadding = "0">
+            <tbody>
+                <tr>
+                    <td><Header name={header} />
+                    </td>
+                </tr>
+                <tr>
+                    <td><Button onClick = {() => setGood(good + 1)} text = 'good'/></td>
+                    <td><Button onClick = {() => setNeutral(neutral + 1)} text = 'neutral'/></td>
+                    <td><Button onClick = {() => setBad(bad + 1)} text = 'bad' /></td> 
+                </tr>
+                <tr>
+                    <td><Header name = {header2} /></td>
+                </tr>
+                <tr>
+                    <td><Statistics good = {good} neutral = {neutral} bad = {bad} /></td>
+                </tr>
+            </tbody>
+        </table>
         </div>
         )
 }
