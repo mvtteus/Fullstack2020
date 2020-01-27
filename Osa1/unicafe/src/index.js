@@ -36,12 +36,28 @@ const Statistics = (props) => {
     }
     return (
         <div>
-            <StatisticLine text = "good" value = {props.good}/>
-            <StatisticLine text = "neutral" value = {props.neutral}/>
-            <StatisticLine text = "bad" value = {props.bad}/>
-            <StatisticLine text = "average" value = {props.good*1+props.bad*-1/(props.good+props.neutral+props.bad)}/>
-            <StatisticLine text = "positive" value = {props.good/(props.good+props.neutral+props.bad)*100} extra = "%" /> 
-            <StatisticLine text = "all" value = {props.good+props.neutral+props.bad}/>
+            <table cellSpacing = "0" cellPadding = "0">
+            <tbody>
+                <tr>
+                    <td><StatisticLine text = "good" value = {props.good}/></td>
+                </tr>
+                <tr>
+                    <td><StatisticLine text = "neutral" value = {props.neutral}/></td>
+                </tr>
+                <tr>
+                    <td><StatisticLine text = "bad" value = {props.bad}/></td>
+                </tr>
+                <tr>
+                    <td><StatisticLine text = "average" value = {props.good*1+props.bad*-1/(props.good+props.neutral+props.bad)}/></td>
+                </tr>
+                <tr>
+                    <td><StatisticLine text = "positive" value = {props.good/(props.good+props.neutral+props.bad)*100} extra = "%" /> </td>
+                </tr>
+                <tr>
+                    <td><StatisticLine text = "all" value = {props.good+props.neutral+props.bad}/></td>
+                </tr>
+            </tbody>
+        </table>
         </div>
     )
 }
@@ -54,25 +70,12 @@ const App = () => {
 
     return (
         <div>
-        <table cellSpacing = "0" cellPadding = "0">
-            <tbody>
-                <tr>
-                    <td><Header name={header} />
-                    </td>
-                </tr>
-                <tr>
-                    <td><Button onClick = {() => setGood(good + 1)} text = 'good'/></td>
-                    <td><Button onClick = {() => setNeutral(neutral + 1)} text = 'neutral'/></td>
-                    <td><Button onClick = {() => setBad(bad + 1)} text = 'bad' /></td> 
-                </tr>
-                <tr>
-                    <td><Header name = {header2} /></td>
-                </tr>
-                <tr>
-                    <td><Statistics good = {good} neutral = {neutral} bad = {bad} /></td>
-                </tr>
-            </tbody>
-        </table>
+            <h1><Header name={header} /></h1>
+            <Button onClick = {() => setGood(good + 1)} text = 'good'/>
+            <Button onClick = {() => setNeutral(neutral + 1)} text = 'neutral'/>
+            <Button onClick = {() => setBad(bad + 1)} text = 'bad' />
+            <h1><Header name = {header2} /></h1>
+            <Statistics good = {good} neutral = {neutral} bad = {bad} />
         </div>
         )
 }
