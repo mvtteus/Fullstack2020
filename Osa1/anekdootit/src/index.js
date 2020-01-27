@@ -6,7 +6,9 @@ const App = (props) => {
 
   return (
     <div>
-      {props.anecdotes[selected]}
+      <p>{props.anecdotes[selected]}</p>
+      <button onClick ={() => setSelected(Math.floor(Math.random() * Math.floor(6)))}> next anecdote </button>
+      {console.log(selected)}
     </div>
   )
 }
