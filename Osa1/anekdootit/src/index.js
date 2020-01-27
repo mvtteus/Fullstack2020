@@ -19,7 +19,6 @@ const App = (props) => {
     <div>
       <h1>Anecdote of the day</h1>
       <p>{props.anecdotes[selected]}</p>
-      {console.log(votes)}
       <p>has {votes[selected]} votes</p>
       <button onClick ={() => setSelected(Math.floor(Math.random() * Math.floor(6)))}> next anecdote </button>
       <button onClick ={handleVote}> vote </button>
