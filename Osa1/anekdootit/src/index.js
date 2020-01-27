@@ -15,8 +15,6 @@ const App = (props) => {
     setEniten(Math.max(...copy))
   }
 
-
-
   return (
     <div>
       <h1>Anecdote of the day</h1>
