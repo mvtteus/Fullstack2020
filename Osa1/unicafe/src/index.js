@@ -41,6 +41,7 @@ const Statistics = (props) => {
             <StatisticLine text = "bad" value = {props.bad}/>
             <StatisticLine text = "average" value = {props.good*1+props.bad*-1/(props.good+props.neutral+props.bad)}/>
             <StatisticLine text = "positive" value = {props.good/(props.good+props.neutral+props.bad)*100} extra = "%" /> 
+            <StatisticLine text = "all" value = {props.good+props.neutral+props.bad}/>
         </div>
     )
 }
