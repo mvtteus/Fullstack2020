@@ -6,6 +6,7 @@ const Course = (props) => {
         <div>
             <Header name = {props.name}/>
             <Content sisalto = {props.parts}/> 
+            <Total sisalto = {props.parts}/>
         </div>
     )
 }
@@ -21,17 +22,25 @@ const Part = ({ osa }) => {
       <li>{osa.name} {osa.exercises}</li>
     )
   }
-  const Content = ({ sisalto }) => {
+const Content = ({ sisalto }) => {
+return (
+    <div>
+    <ul>
+        {sisalto.map((osa, i) => 
+        <Part key={i} osa={osa} />
+        )}
+    </ul>
+    </div>
+)
+}
+
+const Total = ({sisalto}) => {
     return (
-      <div>
-        <ul>
-          {sisalto.map((osa, i) => 
-            <Part key={i} osa={osa} />
-          )}
-        </ul>
-      </div>
+        <div>
+            Total of {sisalto.reduce((s, p) => s + p.exercises,0)} exercises
+        </div>
     )
-  }
+}
 
 const App = () => {
   const course = {
