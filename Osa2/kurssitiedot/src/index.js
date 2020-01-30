@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 const Courses = ({sisalto}) => {
     return (
         <div>
-            <Header name = {"Web development curriculum"}/>
+            <h1>Web development curriculum</h1>
             {sisalto.map((kurssi, i) => 
             <Course key={i} sisalto={kurssi} />
             )}
@@ -15,7 +15,7 @@ const Courses = ({sisalto}) => {
 const Course = ({sisalto}) => {
     return (
         <div>
-            <h3>Web development curriculum</h3>
+            <Header name = {sisalto.name}/>
             <Content sisalto = {sisalto.parts}/> 
             <Total sisalto = {sisalto.parts}/>
         </div>
@@ -23,9 +23,9 @@ const Course = ({sisalto}) => {
 }
 const Header = ({name}) => {
   return (
-          <h1>
+          <h2>
             {name}  
-          </h1>
+          </h2>
   )
 }
 const Part = ({ osa }) => {
