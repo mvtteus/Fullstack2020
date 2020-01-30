@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Course from './components/Course'
 
 const Courses = ({sisalto}) => {
     return (
@@ -8,49 +9,6 @@ const Courses = ({sisalto}) => {
             {sisalto.map((kurssi, i) => 
             <Course key={i} sisalto={kurssi} />
             )}
-        </div>
-    )
-}
-
-const Course = ({sisalto}) => {
-    return (
-        <div>
-            <Header name = {sisalto.name}/>
-            <Content sisalto = {sisalto.parts}/> 
-            <Total sisalto = {sisalto.parts}/>
-        </div>
-    )
-}
-const Header = ({name}) => {
-  return (
-          <h2>
-            {name}  
-          </h2>
-  )
-}
-const Part = ({ osa }) => {
-    return (
-      <li>{osa.name} {osa.exercises}</li>
-    )
-  }
-const Content = ({ sisalto }) => {
-return (
-    <div>
-    <ul>
-        {sisalto.map((osa, i) => 
-        <Part key={i} osa={osa} />
-        )}
-    </ul>
-    </div>
-)
-}
-
-const Total = ({sisalto}) => {
-    return (
-        <div>
-            <b>
-                Total of {sisalto.reduce((s, p) => s + p.exercises,0)} exercises
-            </b>
         </div>
     )
 }
