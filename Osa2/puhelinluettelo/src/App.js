@@ -10,7 +10,7 @@ const App = () => {
 
   const [ newName, setNewName ] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [showAll, setShowAll] = useState(true)
+  const [newSearch, setSearch] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -35,18 +35,25 @@ const App = () => {
     setNewNumber(event.target.value)
   }
   const handleFiltering = (event) => {
-    console.log(event.target.value)
-    persons.filter(i => i.name.includes(Filter.value))
+    setSearch(event.target.value)
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter handleFiltering = {handleFiltering}/>
+      <Filter newSearch = {newSearch} handleFiltering = {handleFiltering}/>
       <h2>Add a new contact</h2>
       <PersonForm newName = {newName} newNumber = {newNumber} setNewName = {setNewName} setNewNumber = {setNewNumber} addPerson = {addPerson} handleNumberChange = {handleNumberChange} handleNameChange = {handleNameChange}/>
       <h2>Numbers</h2>
-      <Persons persons = {persons} showAll = {showAll} />
+      <Persons persons = {persons} />
+      <div>
+        -----------------------------------------
+            {persons.filter(i => i.name.includes(newSearch)).map((person, i) => 
+          <p key={person.name}>
+         {person.name} {person.number}
+          </p>
+          )}
+        </div>
     </div>
   )
 
