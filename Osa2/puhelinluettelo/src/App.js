@@ -45,15 +45,7 @@ const App = () => {
       <h2>Add a new contact</h2>
       <PersonForm newName = {newName} newNumber = {newNumber} setNewName = {setNewName} setNewNumber = {setNewNumber} addPerson = {addPerson} handleNumberChange = {handleNumberChange} handleNameChange = {handleNameChange}/>
       <h2>Numbers</h2>
-      <Persons persons = {persons} />
-      <div>
-        -----------------------------------------
-            {persons.filter(i => i.name.includes(newSearch)).map((person, i) => 
-          <p key={person.name}>
-         {person.name} {person.number}
-          </p>
-          )}
-        </div>
+      <Persons persons = {persons} newSearch = {newSearch} />
     </div>
   )
 

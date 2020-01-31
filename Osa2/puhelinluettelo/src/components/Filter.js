@@ -6,7 +6,6 @@ const Filter = ({newSearch, handleFiltering}) => {
             <form> 
             <div>
             manage filtering: <input value = {newSearch} onChange = {handleFiltering}/>
-            {console.log(newSearch)}
             </div>
             </form> 
         </div>
