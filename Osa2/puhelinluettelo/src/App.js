@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  const [ persons, setPersons] = useState([
+  const [persons, setPersons] = useState([
     { name: '', number: ''}
   ]) 
+
   const [ newName, setNewName ] = useState('')
   const [newNumber, setNewNumber] = useState('')
 
