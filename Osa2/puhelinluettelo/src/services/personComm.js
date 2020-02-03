@@ -8,9 +8,14 @@ const getAll = () => {
   const create = newObject => {
     return axios.post(baseUrl, newObject)
   }
+
+  const poista = (id) => {
+    return axios.delete(`http://localhost:3001/persons/${id}`)
+  }
   
   
   export default { 
     getAll: getAll, 
-    create: create
+    create: create,
+    poista: poista
   }
