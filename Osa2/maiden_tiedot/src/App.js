@@ -16,7 +16,6 @@ const App = () => {
         console.log('loaded')
         setCountries(response.data)
         setLoad(true)
-        console.log(response.data)
       })
   }, [])
 
@@ -32,7 +31,7 @@ const App = () => {
               find countries: <input value = {newSearch} onChange = {handleSearch}/>
               </div>
         </form> 
-        <RenderCountries countries = {countries} newSearch = {newSearch}/>
+        <RenderCountries countries = {countries} newSearch = {newSearch} setSearch = {setSearch}/>
       </div>
     )
   } else {

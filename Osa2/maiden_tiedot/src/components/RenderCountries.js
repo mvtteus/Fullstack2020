@@ -1,5 +1,11 @@
 import React from 'react'
 
+const Button = ({setSearch}) => {
+    return (
+        <button onClick = {setSearch}> show </button>
+    )
+}
+
 const RenderSingleCountry = ({country}) => {
     return (
         <div>
@@ -13,11 +19,11 @@ const RenderSingleCountry = ({country}) => {
                         {lang.name}
                     </li>)}
             </ul>
-            <img src = {country.flag} width="100" height="100"/>
+            <img src = {country.flag} alt = "huutista" width="100" height="100"/>
         </div>
     )
 }
-const RenderCountries = ({countries, newSearch}) => {
+const RenderCountries = ({countries, newSearch, setSearch}) => {
     if (countries.filter(i => i.name.toLowerCase().includes(newSearch.toLowerCase())).length === 1) {
         return (
             <RenderSingleCountry country = {countries.filter(i => i.name.toLowerCase().includes(newSearch.toLowerCase()))[0]}/>
@@ -27,7 +33,9 @@ const RenderCountries = ({countries, newSearch}) => {
             <div>
               {countries.filter(i => i.name.toLowerCase().includes(newSearch.toLowerCase())).map((country, i) => 
               <p key={i}>
-             {country.name}
+             {country.name} 
+             <Button setSearch = {setSearch(country.name)}/>
+             {console.log(newSearch)}
               </p>
               )}
             </div>
