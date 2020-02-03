@@ -13,8 +13,8 @@ const getAll = () => {
     return axios.delete(`http://localhost:3001/persons/${id}`)
   }
 
-  const paivita = (id) => {
-      return axios.put(`http://localhost:3001/persons/${id}`)
+  const paivita = (id, numberUpdate) => {
+      return axios.put(`http://localhost:3001/persons/${id}`, numberUpdate)
   }
   
   

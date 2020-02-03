@@ -29,10 +29,19 @@ const App = () => {
     const personObject = {
       name: newName, number: newNumber
     }
-    if (persons.some(i => i.name === newName)) {
+    if (persons.some(i => i.name === newName && i.number !== newNumber)) {
+      if (window.confirm(`${newName} is already added to the phonebook, replace the number with a new one?`)) {
+        personService
+        .paivita(persons.filter(i => i.name === newName)[0].id, personObject)
+        .then(response => {
+        personService.getAll().then(response => {
+          //en käyttänyt seuraavassa concatia, koska se "duplikoi" sivulla näkyvät numerot ´, kunnes sivu päivitettiin ja tilanne palautui normaaliksi
+          setPersons(response.data)
+        })
+        })
+      }
+    } else if (persons.some(i => i.name === newName)){
       window.alert(`${newName} is already added to phonebook`)
-    } else if (persons.some(i => i.number === newNumber)){
-      window.alert(`number ${newNumber} is already added to phonebook`)
     } else {
       personService
       .create(personObject)
