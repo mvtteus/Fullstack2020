@@ -15,7 +15,7 @@ const Persons = ({persons, newSearch, setPersons, setShowMessage}) => {
                       setShowMessage(`Deleted ${person.name}`)})})}
                       setTimeout(() => {
                         setShowMessage(null)
-                      }, 3000)
+                      }, 1000)
                     {console.log("deleted", {person})}}}> delete </button> 
           </p>
           )}

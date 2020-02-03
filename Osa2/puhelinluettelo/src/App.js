@@ -42,11 +42,18 @@ const App = () => {
           setShowMessage(`Updated ${newName} 's number`)
           setTimeout(() => {
             setShowMessage(null)
-          }, 3000)
+          }, 1000)
         })
+        }).catch(error => {
+          setShowMessage(`${newName} is already removed from the server!`)
+          setTimeout(() => {
+            setShowMessage(null)
+          }, 1000)
+          setPersons(persons.filter(i => i.name !== newName))
         })
       }
     } else if (persons.some(i => i.name === newName)){
+      //vähän turha, mutta jätin kuitenkin, ettei tarvitse tehdä tarpeetonta päivitystä jos yritetään luoda identtinen yhteystieto olemassa olevan kanssa
       window.alert(`${newName} is already added to phonebook`)
     } else {
       personService
@@ -58,7 +65,7 @@ const App = () => {
         setShowMessage(`Added ${newName}`)
         setTimeout(() => {
           setShowMessage(null)
-        }, 3000)
+        }, 1000)
       })
     }
   }
