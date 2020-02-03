@@ -3,6 +3,7 @@ import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import Filter from './components/Filter'
 import personService from './services/personComm'
+import Message from './components/Message'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -12,6 +13,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newSearch, setSearch] = useState('')
+  const [showMessage, setShowMessage] = useState(null)
 
   useEffect(() => {
     console.log('effect')
@@ -37,6 +39,10 @@ const App = () => {
         personService.getAll().then(response => {
           //en käyttänyt seuraavassa concatia, koska se "duplikoi" sivulla näkyvät numerot ´, kunnes sivu päivitettiin ja tilanne palautui normaaliksi
           setPersons(response.data)
+          setShowMessage(`Updated ${newName} 's number`)
+          setTimeout(() => {
+            setShowMessage(null)
+          }, 3000)
         })
         })
       }
@@ -49,6 +55,10 @@ const App = () => {
         setPersons(persons.concat(response.data))
         setNewName('')
         setNewNumber('')
+        setShowMessage(`Added ${newName}`)
+        setTimeout(() => {
+          setShowMessage(null)
+        }, 3000)
       })
     }
   }
@@ -65,11 +75,12 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Message message = {showMessage}/>
       <Filter newSearch = {newSearch} handleFiltering = {handleFiltering}/>
       <h2>Add a new contact</h2>
       <PersonForm newName = {newName} newNumber = {newNumber} setNewName = {setNewName} setNewNumber = {setNewNumber} addPerson = {addPerson} handleNumberChange = {handleNumberChange} handleNameChange = {handleNameChange}/>
       <h2>Numbers</h2>
-      <Persons persons = {persons} newSearch = {newSearch} setPersons = {setPersons} />
+      <Persons persons = {persons} newSearch = {newSearch} setPersons = {setPersons} setShowMessage= {setShowMessage}/>
     </div>
   )
 
