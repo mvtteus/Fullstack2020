@@ -12,10 +12,15 @@ const getAll = () => {
   const poista = (id) => {
     return axios.delete(`http://localhost:3001/persons/${id}`)
   }
+
+  const paivita = (id) => {
+      return axios.put(`http://localhost:3001/persons/${id}`)
+  }
   
   
   export default { 
     getAll: getAll, 
     create: create,
-    poista: poista
+    poista: poista,
+    paivita: paivita
   }
