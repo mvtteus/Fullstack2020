@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Button = ({setSearch}) => {
+const Button = ({setSearch, country}) => {
     return (
-        <button onClick = {setSearch}> show </button>
+        <button onClick = {()=>{setSearch(country)}}> show </button>
     )
 }
 
@@ -34,8 +34,7 @@ const RenderCountries = ({countries, newSearch, setSearch}) => {
               {countries.filter(i => i.name.toLowerCase().includes(newSearch.toLowerCase())).map((country, i) => 
               <p key={i}>
              {country.name} 
-             <Button setSearch = {setSearch(country.name)}/>
-             {console.log(newSearch)}
+             <Button setSearch = {setSearch} country = {country.name}/>
               </p>
               )}
             </div>
