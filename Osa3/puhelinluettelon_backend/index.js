@@ -72,7 +72,15 @@ app.use(express.json())
 app.post('/api/persons', (request, response) => {
   console.log(request.body)
   const body = request.body
-
+  if (body.number === undefined || body.name === undefined) {
+    return response.status(400).json({
+      error: 'Missing name or number'
+    })
+  } else if (persons.find(p => p.name === body.name) != body.name) {
+    return response.status(400).json({
+      error: 'Name must be unique'
+    })
+  }
   const person = {
     name: body.name,
     number: body.number,
