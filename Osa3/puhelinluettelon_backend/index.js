@@ -24,13 +24,26 @@ let persons = [
     }
   ]
 
+let info = {
+    persons: persons.length,
+    pvm: new Date()
+}
+
 app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
+  res.sendDate()
 })
 
 app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
+
+app.get('/api/info', (req, res) => {
+    res.send(
+        `<p>Phonebook has info for ${info.persons} people</p>
+        <p>${info.pvm}</p>`
+        )
+  })
 
 const PORT = 3001
 app.listen(PORT, () => {
