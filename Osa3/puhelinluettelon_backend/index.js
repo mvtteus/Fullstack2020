@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 let persons = [
@@ -69,14 +70,16 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.use(express.json())
+app.use(morgan('tiny'))
 app.post('/api/persons', (request, response) => {
   console.log(request.body)
   const body = request.body
+  console.log(persons.filter(p => p.name === body.name)[0])
   if (body.number === undefined || body.name === undefined) {
     return response.status(400).json({
       error: 'Missing name or number'
     })
-  } else if (persons.filter(p => p.name === body.name)[0].name == body.name) {
+  } else if (persons.filter(p => p.name === body.name)[0] !== undefined) {
     console.log(persons.filter(p => p.name === body.name)[0])
     return response.status(400).json({
       error: 'Name must be unique'
