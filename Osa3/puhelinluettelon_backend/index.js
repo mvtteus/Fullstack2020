@@ -46,7 +46,7 @@ app.get('/api/persons', (req, res) => {
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   console.log(id)
-  const person = persons.find(note => note.id === id)
+  const person = persons.find(person => person.id === id)
   
   if (person) {
     response.json(person)
@@ -66,7 +66,20 @@ app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   persons = persons.filter(person => person.id !== id)
   response.status(204).end()
-  console.log("poistettu")
+})
+
+app.use(express.json())
+app.post('/api/persons', (request, response) => {
+  console.log(request.body)
+  const body = request.body
+
+  const person = {
+    name: body.name,
+    number: body.number,
+    id: Math.floor(Math.random() * 1000) + 1  
+  }
+  persons.concat(person)
+  response.json(person)
 })
 
 const PORT = 3001
