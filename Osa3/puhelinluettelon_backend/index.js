@@ -34,6 +34,8 @@ let info = {
     persons: persons.length,
     date: new Date()
 }
+app.use(express.json())
+app.use(morgan('tiny'))
 
 app.get('/', (req, res) => {
   res.send('<h1>HUUTISTA</h1>')
@@ -69,12 +71,9 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
-app.use(express.json())
-app.use(morgan('tiny'))
 app.post('/api/persons', (request, response) => {
   console.log(request.body)
   const body = request.body
-  console.log(persons.filter(p => p.name === body.name)[0])
   if (body.number === undefined || body.name === undefined) {
     return response.status(400).json({
       error: 'Missing name or number'
