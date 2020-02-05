@@ -21,16 +21,21 @@ let persons = [
       name: "Mary Poppendieck", 
       number: "39-23-6423122",
       id: 4
+    },
+    {
+      name: "Iivari Laaksonen",
+      number: "112",
+      id: 5
     }
   ]
 
 let info = {
     persons: persons.length,
-    pvm: new Date()
+    date: new Date()
 }
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
+  res.send('<h1>HUUTISTA</h1>')
   res.sendDate()
 })
 
@@ -38,12 +43,24 @@ app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
 
+app.get('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  console.log(id)
+  const person = persons.find(note => note.id === id)
+  
+  if (person) {
+    response.json(person)
+  } else {
+    response.status(404).end()
+  }
+})
+
 app.get('/api/info', (req, res) => {
     res.send(
         `<p>Phonebook has info for ${info.persons} people</p>
-        <p>${info.pvm}</p>`
-        )
-  })
+        <p>${info.date}</p>`
+    )
+})
 
 const PORT = 3001
 app.listen(PORT, () => {
