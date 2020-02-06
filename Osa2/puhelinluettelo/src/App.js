@@ -5,6 +5,7 @@ import Filter from './components/Filter'
 import personService from './services/personComm'
 import Message from './components/Message'
 
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: '', number: ''}
@@ -14,11 +15,11 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [newSearch, setSearch] = useState('')
   const [showMessage, setShowMessage] = useState(null)
-
+  
   useEffect(() => {
     console.log('effect')
     personService
-      .getAll('http://localhost:3001/persons')
+      .getAll()
       .then(response => {
         console.log('loaded')
         setPersons(response.data)

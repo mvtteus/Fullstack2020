@@ -1,6 +1,7 @@
 import React from 'react'
 import personService from '../services/personComm'
 
+
 const Persons = ({persons, newSearch, setPersons, setShowMessage}) => {
     return (
         <div>
