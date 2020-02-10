@@ -68,6 +68,12 @@ const App = () => {
           setShowMessage(null)
         }, 1000)
       })
+      .catch(error => {
+        setShowMessage(JSON.stringify(error.response.data))
+        setTimeout(() => {
+          setShowMessage(null)
+        }, 5000)
+        console.log(error.response.data)})
     }
   }
   const handleNameChange = (event) => {
