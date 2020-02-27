@@ -36,6 +36,12 @@ const App = () => {
       if (window.confirm(`${newName} is already added to the phonebook, replace the number with a new one?`)) {
         personService
         .paivita(persons.filter(i => i.name === newName)[0].id, personObject)
+        .catch(error => {
+          setShowMessage(JSON.stringify(error.response.data))
+          setTimeout(() => {
+            setShowMessage(null)
+          }, 2000)
+          console.log(error.response.data)})
         .then(response => {
         personService.getAll().then(response => {
           //en käyttänyt seuraavassa concatia, koska se "duplikoi" sivulla näkyvät numerot ´, kunnes sivu päivitettiin ja tilanne palautui normaaliksi
@@ -72,7 +78,7 @@ const App = () => {
         setShowMessage(JSON.stringify(error.response.data))
         setTimeout(() => {
           setShowMessage(null)
-        }, 5000)
+        }, 2000)
         console.log(error.response.data)})
     }
   }
