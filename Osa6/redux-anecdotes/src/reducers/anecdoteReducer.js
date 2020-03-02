@@ -1,13 +1,4 @@
-const getId = () => (100000 * Math.random()).toFixed(0)
-
-const asObject = (anecdote) => {
-  return {
-    content: anecdote,
-    id: getId(),
-    votes: 0
-  }
-}
-
+import anecdoteService from '../services/anecdotes'
 
 const reducer = (state = [], action) => {
   console.log('state now: ', state)
@@ -35,10 +26,13 @@ const reducer = (state = [], action) => {
 }
 
 export const createAnecdote = (content) => {
-  return {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch({
       type: 'ADD NEW',
-      data: asObject(content)
-    }
+      data: newAnecdote,
+    })
+  }
 }
 
 
@@ -49,10 +43,13 @@ export const addVote = (id) => {
   }
 }
 
-export const initializeAnecdotes = (anecdotes) => {
-  return {
-    type: 'INIT',
-    data: anecdotes,
+export const initializeAnecdotes = () => {
+  return async dispatch => {
+    const anecdotes = await anecdoteService.getAll()
+    dispatch({
+      type: 'INIT',
+      data: anecdotes,
+    })
   }
 }
 
