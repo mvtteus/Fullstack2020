@@ -19,7 +19,7 @@ const reducer = (state = [], action) => {
       //ei tarvi sortata, koska default votemäärä on 0 ja menee itsestään pohjalle
       return [...state, action.data]
     case 'INIT':
-        return action.data
+        return action.data.sort((i, j) => i.votes > j.votes ? -1 : (i.votes < j.votes ? 1 : 0))
     default:
       return state
   }
