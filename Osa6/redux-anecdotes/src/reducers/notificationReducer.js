@@ -17,13 +17,15 @@ export const reset = () => {
     }
 }
 
+let emptyTimer
 export const sendNotification = (notification, kerroin) => {
     return async dispatch => {
+        clearTimeout(emptyTimer)
         dispatch ({
             type: 'SEND MESSAGE',
             notification
         })
-        setTimeout(() => {
+        emptyTimer = setTimeout(() => {
             dispatch(reset())  
           }, kerroin * 1000)
     }
