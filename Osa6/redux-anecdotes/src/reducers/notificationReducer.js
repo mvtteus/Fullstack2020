@@ -17,10 +17,15 @@ export const reset = () => {
     }
 }
 
-export const sendNotification = (notification) => {
-    return {
-        type: 'SEND MESSAGE',
-        notification
+export const sendNotification = (notification, kerroin) => {
+    return async dispatch => {
+        dispatch ({
+            type: 'SEND MESSAGE',
+            notification
+        })
+        setTimeout(() => {
+            dispatch(reset())  
+          }, kerroin * 1000)
     }
 }
 
