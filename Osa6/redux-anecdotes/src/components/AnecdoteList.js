@@ -18,16 +18,16 @@ const AnecdoteList = () => {
 
     return (
         <div>
-                {anecdotes.filter(a => a.content.toLowerCase().includes(filter)).map(anecdote =>
-                    <div key={anecdote.id}>
-                    <div>
-                        {anecdote.content}
-                    </div>
-                    <div>
-                        has {anecdote.votes}
-                        <button onClick = {() => vote(anecdote.id)}>vote</button>
-                    </div>
+            {anecdotes.filter(a => a.content.toLowerCase().includes(filter)).map(anecdote =>
+                <div key={anecdote.id}>
+                <div>
+                    {anecdote.content}
                 </div>
+                <div>
+                    has {anecdote.votes}
+                    <button onClick = {() => vote(anecdote.id)}>vote</button>
+                </div>
+            </div>
             )}
         </div>
     )
