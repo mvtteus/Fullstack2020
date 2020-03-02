@@ -8,14 +8,13 @@ const AnecdoteList = () => {
     const filter = useSelector(state => state.filter)
     const dispatch = useDispatch()
 
-    const vote = (id) => {
-        dispatch(addVote(id))
-        dispatch(sendNotification(`voted ${id}`))
+    const vote = (anecdote) => {
+        dispatch(addVote(anecdote))
+        dispatch(sendNotification(`voted ${anecdote.content}`))
         setTimeout(() => {
             dispatch(reset())  
           }, 5000)
     }
-    console.log("kys vittu",anecdotes)
 
     return (
         <div>
@@ -26,7 +25,7 @@ const AnecdoteList = () => {
                 </div>
                 <div>
                     has {anecdote.votes}
-                    <button onClick = {() => vote(anecdote.id)}>vote</button>
+                    <button onClick = {() => vote(anecdote)}>vote</button>
                 </div>
             </div>
             )}
