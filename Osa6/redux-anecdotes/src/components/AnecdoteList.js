@@ -15,6 +15,7 @@ const AnecdoteList = () => {
             dispatch(reset())  
           }, 5000)
     }
+    console.log("kys vittu",anecdotes)
 
     return (
         <div>
