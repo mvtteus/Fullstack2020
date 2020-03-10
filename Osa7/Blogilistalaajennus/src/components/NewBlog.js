@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { sendNotification} from '../reducers/notificationReducer'
+import { connect } from 'react-redux'
 
 const NewBlog = (props) => {
   const [title, setTitle] = useState('')
@@ -51,4 +53,7 @@ const NewBlog = (props) => {
   )
 }
 
-export default NewBlog
+export default connect(
+  null, 
+  {  sendNotification }
+)(NewBlog)
