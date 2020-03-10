@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { sendNotification} from '../reducers/notificationReducer'
+import { sendNotification } from '../reducers/notificationReducer'
+import { createBlog } from '../reducers/blogReducer'
 import { connect } from 'react-redux'
 
 const NewBlog = (props) => {
@@ -7,13 +8,15 @@ const NewBlog = (props) => {
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
 
+
   const handleNewBlog = (event) => {
     event.preventDefault()
-
     props.createBlog({
-      title, author, url
+      title,
+      author,
+      url
     })
-
+    props.sendNotification(`a new blog '${title}' by ${author} added!`, 5)
     setTitle('')
     setAuthor('')
     setUrl('')
@@ -22,7 +25,7 @@ const NewBlog = (props) => {
   return (
     <div>
       <h2>create new</h2>
-      <form onSubmit={handleNewBlog}>
+      <form onSubmit={handleNewBlog} >
         <div>
           author
           <input
@@ -55,5 +58,5 @@ const NewBlog = (props) => {
 
 export default connect(
   null, 
-  {  sendNotification }
+  {  sendNotification, createBlog }
 )(NewBlog)
