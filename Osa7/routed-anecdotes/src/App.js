@@ -75,7 +75,7 @@ const CreateNew = (props) => {
     })
     history.push("/")
   }
-  const reset = (e) => {
+  const handleReset = (e) => {
     console.log(content)
     console.log(content.value)
     e.preventDefault()
@@ -84,23 +84,31 @@ const CreateNew = (props) => {
     info.reset()
   }
 
+  var {reset, ...contentInput} = content
+  var {reset, ...authorInput} = author
+  var {reset, ...infoInput} = info
+
+  console.log(content)
+  console.log(contentInput)
+  console.log("aa: ", {reset, ...contentInput})
+
   return (
     <div>
       <h2>create a new anecdote</h2>
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input {...content} />
+          <input {...contentInput} />
         </div>
         <div>
           author
-          <input {...author} />
+          <input {...authorInput} />
         </div>
         <div>
           url for more info
-          <input {...info} />
+          <input {...infoInput} />
         </div>
-        <button>create</button> <button type = 'button' onClick = {reset}> reset</button>
+        <button>create</button> <button type = 'button' onClick = {handleReset}> reset</button>
       </form>
     </div>
   )
